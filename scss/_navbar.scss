@@ -1,0 +1,116 @@
+// ============================================
+// NAVEGAÇÃO
+// ============================================
+
+.navbar {
+    background-color: $primary-color;
+    box-shadow: $shadow-base;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-content {
+    @include flex-between;
+    padding: $spacing-md 0;
+}
+
+.logo {
+    h1 {
+        color: $white;
+        font-size: 1.8rem;
+        font-weight: 700;
+    }
+}
+
+.nav-menu {
+    @include flex-center;
+    gap: 2rem;
+    
+    li {
+        position: relative;
+    }
+}
+
+.nav-link {
+    color: $text-light;
+    text-decoration: none;
+    font-weight: 500;
+    transition: $transition;
+    position: relative;
+    
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: $accent-color;
+        transition: $transition;
+    }
+    
+    &:hover {
+        color: $accent-color;
+        
+        &::after {
+            width: 100%;
+        }
+    }
+}
+
+// Hamburger Menu
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    
+    span {
+        width: 25px;
+        height: 3px;
+        background-color: $white;
+        transition: $transition;
+        border-radius: 2px;
+    }
+    
+    &:hover span {
+        background-color: $secondary-color;
+    }
+}
+
+// Mobile Menu
+@include respond-to('tablet') {
+    .hamburger {
+        display: flex;
+    }
+    
+    .nav-menu {
+        position: absolute;
+        left: -100%;
+        top: 70px;
+        @include flex-column;
+        background-color: $white;
+        width: 100%;
+        text-align: center;
+        transition: $transition;
+        box-shadow: $shadow-base;
+        gap: 0;
+        z-index: 99;
+        
+        &.active {
+            left: 0;
+        }
+        
+        li {
+            padding: $spacing-md 0;
+            border-bottom: 1px solid $light-bg;
+            
+            &:last-child {
+                border-bottom: none;
+            }
+        }
+    }
+}

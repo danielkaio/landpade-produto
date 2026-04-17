@@ -1,0 +1,92 @@
+// ============================================
+// HERO SECTION
+// ============================================
+
+.hero {
+    background: linear-gradient(135deg, $primary-color 0%, $secondary-color 100%);
+    background-image: url('../img%20/inicial.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: $white;
+    padding: 80px $spacing-lg;
+    text-align: center;
+    min-height: 500px;
+    @include flex-center;
+    position: relative;
+    overflow: hidden;
+    
+    // Overlay escuro para melhor legibilidade
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(44, 62, 80, 0.65);
+        z-index: 1;
+    }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    
+    h2 {
+        font-size: $font-size-3xl;
+        margin-bottom: $spacing-md;
+        animation: slideInDown 0.8s ease;
+    }
+    
+    p {
+        font-size: $font-size-lg;
+        margin-bottom: $spacing-xl;
+        opacity: 0.95;
+        animation: slideInUp 0.8s ease 0.2s both;
+    }
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: $accent-color;
+    color: $white;
+    padding: 12px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: $transition;
+    animation: slideInUp 0.8s ease 0.4s both;
+    position: relative;
+    z-index: 2;
+    
+    &:hover {
+        background-color: darken($accent-color, 10%);
+        transform: translateY(-3px);
+        box-shadow: $shadow-lg;
+    }
+}
+
+// Responsive
+@include respond-to('tablet') {
+    .hero {
+        padding: 60px $spacing-lg;
+        min-height: 350px;
+    }
+    
+    .hero-content {
+        h2 {
+            font-size: 2rem;
+        }
+        
+        p {
+            font-size: $font-size-base;
+        }
+    }
+}
+
+@include respond-to('mobile') {
+    .hero-content h2 {
+        font-size: 1.5rem;
+    }
+}

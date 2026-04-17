@@ -1,0 +1,62 @@
+// ============================================
+// MIXINS ÚTEIS
+// ============================================
+
+// Flexbox
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@mixin flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+// Responsive
+@mixin respond-to($breakpoint) {
+    @if $breakpoint == 'mobile' {
+        @media (max-width: #{$breakpoint-mobile}) {
+            @content;
+        }
+    } @else if $breakpoint == 'tablet' {
+        @media (max-width: #{$breakpoint-tablet}) {
+            @content;
+        }
+    } @else if $breakpoint == 'desktop' {
+        @media (max-width: #{$breakpoint-desktop}) {
+            @content;
+        }
+    }
+}
+
+// Button Reset
+@mixin button-reset {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-family: inherit;
+    
+    &:focus {
+        outline: none;
+    }
+}
+
+// Link Reset
+@mixin link-reset {
+    text-decoration: none;
+    color: inherit;
+    
+    &:focus,
+    &:hover {
+        text-decoration: none;
+    }
+}

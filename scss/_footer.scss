@@ -1,0 +1,109 @@
+// ============================================
+// FOOTER
+// ============================================
+
+.footer {
+    background-color: $primary-color;
+    color: $white;
+    padding: $spacing-xl;
+    
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-lg;
+    width: 100%;
+}
+
+.footer-info {
+    text-align: center;
+    
+    p {
+        margin: 0;
+        opacity: 0.9;
+        font-size: $font-size-sm;
+    }
+}
+
+.social-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-xl;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.social-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-sm;
+    text-decoration: none;
+    transition: $transition;
+    
+    svg {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        padding: 10px;
+        border-radius: 50%;
+        background-color: rgba($white, 0.15);
+        color: $white;
+        transition: $transition;
+    }
+    
+    .social-label {
+        font-size: 0.85rem;
+        color: $white;
+        opacity: 0.85;
+        transition: $transition;
+        font-weight: 500;
+    }
+    
+    &:hover,
+    &:focus {
+        svg {
+            transform: rotate(15deg) scale(1.15);
+        }
+        
+        .social-label {
+            opacity: 1;
+        }
+        
+        outline: none;
+    }
+    
+    &.linkedin:hover svg {
+        background-color: #0077b5;
+        box-shadow: 0 6px 20px rgba(0, 119, 181, 0.4);
+    }
+    
+    &.whatsapp:hover svg {
+        background-color: #25d366;
+        box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+    }
+    
+    &.email:hover svg {
+        background-color: #ea4335;
+        box-shadow: 0 6px 20px rgba(234, 67, 53, 0.4);
+    }
+}
+
+@include respond-to('tablet') {
+    .footer-content {
+        gap: $spacing-md;
+    }
+    
+    .social-links {
+        gap: $spacing-md;
+    }
+}

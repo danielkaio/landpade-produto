@@ -1,0 +1,84 @@
+// ============================================
+// RESET E ESTILOS GLOBAIS
+// ============================================
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: $font-family;
+    color: $text-dark;
+    line-height: 1.6;
+    background-color: $white;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 $spacing-lg;
+}
+
+// Tipografia
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1.2;
+    font-weight: 600;
+}
+
+h2 {
+    font-size: $font-size-2xl;
+}
+
+h3 {
+    font-size: $font-size-xl;
+}
+
+p {
+    margin-bottom: $spacing-md;
+    
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+a {
+    @include link-reset;
+    color: $secondary-color;
+    transition: $transition;
+    
+    &:hover {
+        color: darken($secondary-color, 10%);
+    }
+}
+
+button {
+    @include button-reset;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+// Formulário
+input,
+textarea,
+select {
+    font-family: inherit;
+    font-size: inherit;
+}
+
+textarea {
+    resize: vertical;
+}

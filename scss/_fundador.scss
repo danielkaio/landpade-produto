@@ -1,0 +1,146 @@
+// ============================================
+// SEÇÃO FUNDADOR
+// ============================================
+
+.fundador {
+    background: linear-gradient(135deg, #f0f4f8 0%, #e8f1f7 100%);
+    padding: $spacing-2xl 0;
+    
+    .container {
+        max-width: 1200px;
+    }
+}
+
+.fundador-content {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: $spacing-2xl;
+    align-items: flex-start;
+    
+    @include respond-to('tablet') {
+        grid-template-columns: 1fr;
+        gap: $spacing-xl;
+    }
+}
+
+.fundador-image {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    
+    img {
+        width: 100%;
+        max-width: 400px;
+        height: auto;
+        border-radius: 10px;
+        box-shadow: 0 10px 40px rgba(26, 58, 82, 0.15);
+        transition: $transition;
+        
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(59, 123, 168, 0.25);
+        }
+    }
+    
+    @include respond-to('tablet') {
+        img {
+            max-width: 350px;
+        }
+    }
+    
+    @include respond-to('mobile') {
+        img {
+            max-width: 280px;
+        }
+    }
+}
+
+.fundador-text {
+    padding: $spacing-xl 0;
+    
+    h2 {
+        color: $primary-color;
+        font-size: 2rem;
+        margin-bottom: $spacing-sm;
+        
+        @include respond-to('tablet') {
+            font-size: 1.8rem;
+        }
+    }
+    
+    h3 {
+        color: $secondary-color;
+        font-size: 1.3rem;
+        margin-bottom: $spacing-xl;
+        font-weight: 500;
+        
+        @include respond-to('tablet') {
+            font-size: 1.1rem;
+        }
+    }
+    
+    h4 {
+        color: $primary-color;
+        font-size: 1.1rem;
+        margin-top: $spacing-xl;
+        margin-bottom: $spacing-md;
+        
+        &:first-of-type {
+            margin-top: 0;
+        }
+    }
+}
+
+.fundador-bio {
+    margin-bottom: $spacing-xl;
+    
+    p {
+        color: #1a1a1a;
+        line-height: 1.8;
+        margin-bottom: $spacing-md;
+        text-align: justify;
+        font-size: $font-size-base;
+        
+        strong {
+            color: $secondary-color;
+            font-weight: 600;
+        }
+        
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.produto-info {
+    background-color: $white;
+    padding: $spacing-lg;
+    border-radius: 8px;
+    border-left: 4px solid $secondary-color;
+    box-shadow: 0 4px 15px rgba(26, 58, 82, 0.08);
+    
+    h4 {
+        margin-top: 0;
+    }
+    
+    p {
+        color: #1a1a1a;
+        line-height: 1.7;
+        text-align: justify;
+        
+        strong {
+            color: $primary-color;
+            font-weight: 600;
+        }
+        
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+@include respond-to('tablet') {
+    .fundador-text {
+        padding: $spacing-lg 0;
+    }
+}

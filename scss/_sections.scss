@@ -1,0 +1,449 @@
+// ============================================
+// SEÇÕES PRINCIPAIS
+// ============================================
+
+// Sobre
+.sobre {
+    padding: 80px $spacing-lg;
+    background-color: $secondary-color;
+    
+    h2 {
+        font-size: $font-size-2xl;
+        text-align: center;
+        margin-bottom: $spacing-2xl;
+        color: $white;
+    }
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-2xl;
+    align-items: center;
+}
+
+.about-text {
+    h3 {
+        color: $accent-color;
+        margin-top: $spacing-lg;
+        margin-bottom: $spacing-md;
+    }
+    
+    p {
+        color: $text-light;
+        margin-bottom: $spacing-md;
+    }
+}
+
+.about-intro {
+    font-size: $font-size-lg;
+    line-height: 1.8;
+    margin-bottom: $spacing-xl;
+    padding: $spacing-lg;
+    background-color: rgba(107, 163, 212, 0.15);
+    border-left: 4px solid $accent-color;
+    border-radius: 5px;
+    
+    strong {
+        color: $white;
+        font-weight: 700;
+    }
+}
+
+.vision-mission {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-lg;
+    margin-bottom: $spacing-xl;
+}
+
+.mission-box {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: $spacing-lg;
+    border-radius: 5px;
+    border-left: 4px solid $accent-color;
+    transition: $transition;
+    
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.15);
+        transform: translateY(-3px);
+        box-shadow: $shadow-base;
+    }
+    
+    h3 {
+        color: $accent-color;
+        margin-bottom: $spacing-md;
+        font-size: $font-size-lg;
+    }
+    
+    p {
+        color: $text-light;
+        line-height: 1.8;
+    }
+}
+
+.statistics {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-lg;
+    margin-top: $spacing-lg;
+}
+
+.stat-item {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: $spacing-lg;
+    border-left: 4px solid $accent-color;
+    border-radius: 5px;
+    box-shadow: $shadow-base;
+    animation: pulse 2s ease-in-out infinite;
+    transition: $transition;
+    
+    &:hover {
+        box-shadow: $shadow-lg;
+        transform: translateX(5px);
+    }
+    
+    &:nth-child(1) {
+        animation-delay: 0s;
+    }
+    
+    &:nth-child(2) {
+        animation-delay: 0.3s;
+    }
+    
+    &:nth-child(3) {
+        animation-delay: 0.6s;
+    }
+    
+    &:nth-child(4) {
+        animation-delay: 0.9s;
+    }
+}
+
+.stat-number {
+    display: block;
+    font-size: 4.5rem;
+    font-weight: 900;
+    color: #1a3a52;
+    margin-bottom: $spacing-lg;
+    line-height: 1.1;
+}
+
+.stat-item p {
+    color: #2c3e50;
+    font-size: $font-size-sm;
+    line-height: 1.6;
+}
+
+.about-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: $shadow-base;
+    transition: $transition;
+    
+    &:hover {
+        transform: scale(1.05);
+        box-shadow: $shadow-lg;
+    }
+}
+
+// Serviços
+.servicos {
+    padding: 80px $spacing-lg;
+    background-color: $primary-color;
+    
+    h2 {
+        font-size: $font-size-2xl;
+        text-align: center;
+        margin-bottom: $spacing-md;
+        color: $white;
+    }
+}
+
+.servicos-subtitle {
+    text-align: center;
+    color: $text-light;
+    font-size: $font-size-lg;
+    margin-bottom: $spacing-2xl;
+    font-weight: 500;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: $spacing-xl;
+    margin-bottom: $spacing-2xl;
+}
+
+.service-card {
+    background-color: rgba(59, 123, 168, 0.9);
+    padding: $spacing-xl;
+    border-radius: 10px;
+    text-align: center;
+    transition: $transition;
+    box-shadow: $shadow-sm;
+    border-top: 4px solid transparent;
+    
+    &:hover {
+        transform: translateY(-10px);
+        box-shadow: $shadow-lg;
+        border-top-color: $secondary-color;
+    }
+}
+
+.service-icon {
+    font-size: 3.5rem;
+    margin-bottom: $spacing-md;
+    display: block;
+}
+
+.service-card h3 {
+    color: $white;
+    margin-bottom: $spacing-md;
+    font-size: $font-size-xl;
+}
+
+.service-card p {
+    color: $text-light;
+    line-height: 1.8;
+    font-size: $font-size-sm;
+}
+
+// Diferencial Box
+.differencial-box {
+    background: linear-gradient(135deg, #3b7ba8 0%, #1a3a52 100%);
+    color: $white;
+    padding: $spacing-2xl;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: $shadow-lg;
+    animation: slideInUp 0.8s ease;
+    
+    h3 {
+        font-size: $font-size-xl;
+        margin-bottom: $spacing-md;
+        font-weight: 700;
+    }
+    
+    p {
+        font-size: $font-size-lg;
+        line-height: 1.8;
+        margin: 0;
+        font-weight: 500;
+        
+        strong {
+            font-weight: 700;
+            text-decoration: underline;
+        }
+    }
+}
+
+// Contato
+.contato {
+    padding: 80px $spacing-lg;
+    background-color: $white;
+    
+    h2 {
+        font-size: $font-size-2xl;
+        text-align: center;
+        margin-bottom: $spacing-2xl;
+        color: $primary-color;
+    }
+}
+
+.contact-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-2xl;
+}
+
+.contact-info {
+    h3 {
+        color: $primary-color;
+        margin-bottom: $spacing-md;
+        font-size: 1.5rem;
+    }
+    
+    p {
+        color: #555;
+        margin-bottom: $spacing-xl;
+        line-height: 1.6;
+    }
+}
+
+.contact-methods {
+    @include flex-column;
+    gap: $spacing-lg;
+}
+
+.contact-method {
+    display: flex;
+    gap: $spacing-lg;
+    align-items: flex-start;
+    padding: $spacing-md 0;
+    
+    .icon {
+        font-size: 2.2rem;
+        min-width: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    h4 {
+        color: $primary-color;
+        margin-bottom: $spacing-sm;
+        font-weight: 600;
+    }
+    
+    p {
+        margin: 0;
+        color: #555;
+        font-size: 0.95rem;
+    }
+    
+    a {
+        color: $secondary-color;
+        text-decoration: none;
+        transition: $transition;
+        font-weight: 500;
+        
+        &:hover {
+            text-decoration: underline;
+            color: darken($secondary-color, 15%);
+        }
+    }
+}
+
+// Formulário
+.contact-form {
+    background-color: $white;
+    padding: $spacing-xl;
+    border-radius: 10px;
+    box-shadow: $shadow-base;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-lg;
+    
+    @include respond-to('mobile') {
+        grid-template-columns: 1fr;
+    }
+}
+
+.form-group {
+    margin-bottom: $spacing-lg;
+    @include flex-column;
+    
+    &:last-of-type {
+        margin-bottom: 0;
+    }
+    
+    label {
+        margin-bottom: $spacing-sm;
+        color: $primary-color;
+        font-weight: 600;
+        font-size: $font-size-sm;
+        
+        .required {
+            color: #e74c3c;
+        }
+        
+        .optional {
+            color: #95a5a6;
+            font-weight: 400;
+            font-size: 0.85rem;
+        }
+    }
+    
+    input,
+    textarea {
+        padding: $spacing-sm;
+        border: 1px solid $border-color;
+        border-radius: 5px;
+        font-family: inherit;
+        font-size: $font-size-sm;
+        transition: $transition;
+        background-color: #f8f9fa;
+        
+        &:focus {
+            outline: none;
+            border-color: $secondary-color;
+            box-shadow: 0 0 0 3px rgba(59, 123, 168, 0.15);
+            background-color: $white;
+        }
+        
+        &::placeholder {
+            color: #b0b0b0;
+        }
+    }
+    
+    textarea {
+        resize: vertical;
+        min-height: 140px;
+        grid-column: 1 / -1;
+    }
+}
+
+.submit-button {
+    background-color: $secondary-color;
+    color: $white;
+    padding: 14px 40px;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: $transition;
+    font-size: $font-size-base;
+    width: 100%;
+    margin-top: $spacing-lg;
+    
+    &:hover {
+        background-color: darken($secondary-color, 10%);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(59, 123, 168, 0.3);
+    }
+    
+    &:active {
+        transform: translateY(0);
+    }
+}
+
+// Responsive
+@include respond-to('tablet') {
+    .sobre,
+    .servicos,
+    .contato {
+        padding: 50px $spacing-lg;
+    }
+    
+    .sobre h2,
+    .servicos h2,
+    .contato h2 {
+        font-size: 1.8rem;
+    }
+    
+    .about-content,
+    .contact-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .vision-mission {
+        grid-template-columns: 1fr;
+    }
+}
