@@ -16,38 +16,63 @@ document.querySelectorAll('.nav-link').forEach(link => {
 // Formulário de Contato
 const contactForm = document.getElementById('contactForm');
 
-contactForm?.addEventListener('submit', (e) => {
+contactForm?.addEventListener('submit', async (e) => {
     e.preventDefault();
+    console.log('✅ Formulário detectado e enviando...');
 
     // Coletar dados do formulário
     const formData = new FormData(contactForm);
     const data = Object.fromEntries(formData);
+    console.log('📋 Dados coletados:', data);
 
-    // Validar dados
-    if (!data.nome || !data.email || !data.assunto || !data.mensagem) {
-        alert('Por favor, preencha todos os campos.');
+    // Validar campos obrigatórios
+    if (!data.nome || !data.email || !data.mensagem) {
+        console.warn('⚠️ Campos vazios detectados');
+        alert('Por favor, preencha todos os campos obrigatórios (Nome, Email e Mensagem).');
         return;
     }
 
     // Validar email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(data.email)) {
+        console.warn('⚠️ Email inválido:', data.email);
         alert('Por favor, insira um email válido.');
         return;
     }
 
-    // Simular envio (em produção, isso seria enviado para um servidor)
-    console.log('Dados do formulário:', data);
+    // Preparar dados para envio ao servidor
+    const payload = {
+        name: data.nome,
+        email: data.email,
+        message: data.mensagem,
+    };
 
-    // Opção 1: Abrir email padrão
-    const mailtoLink = `mailto:contato@consultoria.com.br?subject=${encodeURIComponent(data.assunto)}&body=${encodeURIComponent(
-        `Nome: ${data.nome}\nEmail: ${data.email}\n\nMensagem:\n${data.mensagem}`
-    )}`;
-    window.location.href = mailtoLink;
+    try {
+        // Enviar para o servidor via POST
+    
+        const response = await fetch('/api/email/contact', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload),
+        });
 
-    // Opção 2: Mostrar mensagem de sucesso (descomente para usar em vez da opção 1)
-    // alert('Obrigado por sua mensagem! Entraremos em contato em breve.');
-    // contactForm.reset();
+        const result = await response.json();
+        
+
+        if (response.ok && result.success) {
+        
+            alert('✓ Obrigado por sua mensagem! Entraremos em contato em breve.');
+            contactForm.reset();
+        } else {
+            console.error('❌ Erro na resposta:', result);
+            alert(`❌ Erro ao enviar: ${result.message || 'Tente novamente mais tarde.'}`);
+        }
+    } catch (error) {
+        console.error('❌ ERRO NA REQUISIÇÃO:', error);
+        alert('❌ Erro ao conectar com o servidor. Verifique sua conexão e tente novamente.');
+    }
 });
 
 // Scroll suave para seções

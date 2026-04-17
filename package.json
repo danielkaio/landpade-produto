@@ -8,15 +8,22 @@
   "main": "index.js",
   "scripts": {
     "sass": "sass --watch scss:css",
-    "dev": "concurrently \"npm run sass\" \"npm run browser-sync\"",
-    "browser-sync": "browser-sync start --server . --files '*.html, css/*.css, js/*.js'",
+    "dev": "concurrently \"npm run server\" \"npm run sass\" \"npm run browser-sync\"",
+    "browser-sync": "browser-sync start --config bs-config.js",
     "build": "sass scss:css --style=compressed",
     "start": "npm run dev",
+    "server": "node server.js",
+    "server:dev": "concurrently \"npm run server\" \"npm run sass\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
-    "sass": "^1.69.5",
     "browser-sync": "^2.29.3",
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "sass": "^1.69.5"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "resend": "^6.12.0"
   }
 }
