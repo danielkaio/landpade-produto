@@ -12,8 +12,13 @@ class EmailController {
    * Handle POST /api/email/contact
    */
   async sendContact(req, res) {
+    let hasResponded = false;
+
     try {
+      console.log('📨 Recebida requisição POST para /api/email/contact');
+      
       const { name, email, message } = req.body;
+      console.log('✅ Body recebido:', { name, email, message });
 
       // Validar dados
       const validation = emailValidator.validateContactForm({
@@ -23,34 +28,44 @@ class EmailController {
       });
 
       if (!validation.isValid) {
-        return res.status(400).json({
+        console.warn('⚠️ Validação falhou:', validation.errors);
+        res.status(400).json({
           success: false,
           errors: validation.errors,
         });
+        hasResponded = true;
+        return;
       }
 
+      console.log('✅ Validação passou');
+
       // Enviar email
+      console.log('📤 Enviando email...');
       const result = await emailService.sendContactEmail({
         name: name.trim(),
         email: email.trim().toLowerCase(),
         message: message.trim(),
       });
 
-      return res.status(200).json({
+      console.log('✅ Email enviado com sucesso');
+      res.status(200).json({
         success: true,
         message: 'Email enviado com sucesso!',
         data: result,
       });
-    } catch (error) {
-      console.error('Erro ao enviar email no controller:', error);
+      hasResponded = true;
       
-      // Garantir que responda com JSON
-      if (!res.headersSent) {
-        return res.status(500).json({
+    } catch (error) {
+      console.error('❌ ERRO NO CONTROLLER:', error.message);
+      console.error('Stack:', error.stack);
+      
+      if (!hasResponded && !res.headersSent) {
+        res.status(500).json({
           success: false,
-          message: 'Erro ao enviar email. Verifique se as variáveis de ambiente estão configuradas.',
+          message: 'Erro ao enviar email. Verifique os logs do servidor.',
           error: process.env.NODE_ENV === 'development' ? error.message : 'Internal Server Error',
         });
+        hasResponded = true;
       }
     }
   }
