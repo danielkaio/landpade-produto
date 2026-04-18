@@ -9,7 +9,7 @@
     background-position: center;
     background-attachment: fixed;
     color: $white;
-    padding: 80px $spacing-lg;
+    padding: 120px $spacing-lg;
     text-align: center;
     min-height: 500px;
     @include flex-center;
@@ -49,7 +49,7 @@
 
 .cta-button {
     display: inline-block;
-    background-color: $accent-color;
+    background-color: $cta-color;
     color: $white;
     padding: 12px 30px;
     text-decoration: none;
@@ -61,7 +61,7 @@
     z-index: 2;
     
     &:hover {
-        background-color: darken($accent-color, 10%);
+        background-color: darken($cta-color, 10%);
         transform: translateY(-3px);
         box-shadow: $shadow-lg;
     }
