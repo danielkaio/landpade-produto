@@ -1,0 +1,15 @@
+{
+  "buildCommand": "npm run build",
+  "public": ".",
+  "functions": {
+    "api/**/*.js": {
+      "runtime": "nodejs@20.x"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/index.js"
+    }
+  ]
+}

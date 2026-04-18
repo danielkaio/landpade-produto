@@ -11,7 +11,7 @@
     "dev": "concurrently \"npm run server\" \"npm run sass\" \"npm run browser-sync\"",
     "browser-sync": "browser-sync start --config bs-config.js",
     "build": "sass scss:css --style=compressed",
-    "start": "npm run dev",
+    "start": "node server.js",
     "server": "node server.js",
     "server:dev": "concurrently \"npm run server\" \"npm run sass\"",
     "test": "echo \"Error: no test specified\" && exit 1"
