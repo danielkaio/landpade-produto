@@ -61,8 +61,7 @@
     z-index: 2;
     
     &:hover {
-        background-color: darken($secondary-color, 10%);
-        box-shadow: $shadow-lg;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
     }
 }
 
