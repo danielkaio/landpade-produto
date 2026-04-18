@@ -195,7 +195,7 @@ textarea {
 }
 .hero {
   background: linear-gradient(135deg, #1a3a52 0%, #3b7ba8 100%);
-  background-image: url("../img%20/inicial.jpeg");
+  background-image: url("../img/inicial.jpeg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
