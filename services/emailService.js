@@ -8,10 +8,17 @@ const emailConfig = require('../config/emailConfig');
 
 class EmailService {
   constructor() {
-    if (!emailConfig.apiKey) {
-      throw new Error('RESEND_API_KEY não configurada em .env');
+    this.resend = null;
+  }
+
+  getResendInstance() {
+    if (!this.resend) {
+      if (!emailConfig.apiKey) {
+        throw new Error('RESEND_API_KEY não configurada em variáveis de ambiente');
+      }
+      this.resend = new Resend(emailConfig.apiKey);
     }
-    this.resend = new Resend(emailConfig.apiKey);
+    return this.resend;
   }
 
   /**
@@ -26,30 +33,28 @@ class EmailService {
     const { name, email, message } = data;
 
     try {
+      const resend = this.getResendInstance();
+
       // Email para o cliente (confirmação)
-  
-      const clientResponse = await this.resend.emails.send({
+      const clientResponse = await resend.emails.send({
         from: `${emailConfig.fromName} <${emailConfig.fromEmail}>`,
         to: email,
         subject: 'Recebemos sua mensagem - PDI Institucional',
         html: this.getClientConfirmationTemplate(name),
       });
-    
 
       // Email para o suporte
-      
-      const supportResponse = await this.resend.emails.send({
+      const supportResponse = await resend.emails.send({
         from: `${emailConfig.fromName} <${emailConfig.fromEmail}>`,
         to: emailConfig.supportEmail,
         replyTo: email,
         subject: `Nova mensagem de contato de ${name}`,
         html: this.getSupportTemplate(name, email, message),
       });
-      
 
       return supportResponse;
     } catch (error) {
-
+      console.error('Erro ao enviar email:', error.message);
       throw error;
     }
   }

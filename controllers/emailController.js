@@ -42,11 +42,11 @@ class EmailController {
         data: result,
       });
     } catch (error) {
-      console.error('Erro ao enviar email:', error);
+      console.error('Erro ao enviar email:', error.message);
       return res.status(500).json({
         success: false,
         message: 'Erro ao enviar email. Tente novamente mais tarde.',
-        error: process.env.NODE_ENV === 'development' ? error.message : undefined,
+        error: process.env.NODE_ENV === 'development' ? error.message : 'Internal Server Error',
       });
     }
   }
