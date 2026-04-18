@@ -33,17 +33,23 @@ class EmailService {
     const { name, email, message } = data;
 
     try {
+      console.log('📧 Iniciando envio de email para:', email);
+      
       const resend = this.getResendInstance();
+      console.log('✅ Instância Resend criada');
 
       // Email para o cliente (confirmação)
+      console.log('📤 Enviando confirmação para cliente...');
       const clientResponse = await resend.emails.send({
         from: `${emailConfig.fromName} <${emailConfig.fromEmail}>`,
         to: email,
         subject: 'Recebemos sua mensagem - PDI Institucional',
         html: this.getClientConfirmationTemplate(name),
       });
+      console.log('✅ Email de confirmação enviado');
 
       // Email para o suporte
+      console.log('📤 Enviando notificação para suporte...');
       const supportResponse = await resend.emails.send({
         from: `${emailConfig.fromName} <${emailConfig.fromEmail}>`,
         to: emailConfig.supportEmail,
@@ -51,10 +57,12 @@ class EmailService {
         subject: `Nova mensagem de contato de ${name}`,
         html: this.getSupportTemplate(name, email, message),
       });
+      console.log('✅ Email de suporte enviado');
 
       return supportResponse;
     } catch (error) {
-      console.error('Erro ao enviar email:', error.message);
+      console.error('❌ Erro ao enviar email:', error.message);
+      console.error('Stack:', error.stack);
       throw error;
     }
   }
