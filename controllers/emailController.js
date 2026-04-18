@@ -1,15 +1,19 @@
 /**
  * Controlador de Email
  * Responsabilidade: Validar dados e coordenar com o serviço de email
+ * 
+ * Nota: Este controlador não é mais usado no Vercel.
+ * A lógica foi movida para /api/email/contact.js (serverless function).
+ * Mantido aqui para referência.
  */
 
 const emailService = require('../services/emailService');
-const emailConfig = require('../config/emailConfig');
 const emailValidator = require('../utils/emailValidator');
 
 class EmailController {
   /**
    * Handle POST /api/email/contact
+   * (Deprecated - usar /api/email/contact.js no Vercel)
    */
   async sendContact(req, res) {
     let hasResponded = false;
