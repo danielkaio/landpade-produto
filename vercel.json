@@ -1,6 +1,5 @@
 {
   "buildCommand": "npm run build",
-  "public": ".",
   "functions": {
     "api/**/*.js": {
       "maxDuration": 10,
