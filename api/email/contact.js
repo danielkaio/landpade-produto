@@ -1,38 +1,70 @@
-const emailController = require('../../controllers/emailController');
+const emailValidator = require('../../utils/emailValidator');
+const emailService = require('../../services/emailService');
 
 module.exports = async (req, res) => {
   try {
-    // Definir headers primeiro
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
-    res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
+    // Garantir JSON como resposta
     res.setHeader('Content-Type', 'application/json; charset=utf-8');
     
+    console.log('🔵 [api/email/contact] Requisição recebida:', {
+      method: req.method,
+      body: req.body,
+    });
+
     if (req.method === 'OPTIONS') {
-      return res.status(200).end();
+      return res.status(200).json({ ok: true });
     }
 
     if (req.method !== 'POST') {
-      return res.status(405).json({ 
+      return res.status(405).json({
         success: false,
-        message: 'Método não permitido' 
+        message: 'Apenas POST é aceito',
       });
     }
 
-    // Chamar controller
-    await emailController.sendContact(req, res);
-    
-  } catch (error) {
-    console.error('🔴 ERRO CRÍTICO NO HANDLER:', error);
-    console.error('Stack:', error.stack);
-    
-    // Enviar resposta de erro garantidamente JSON
-    if (!res.headersSent) {
-      return res.status(500).json({
+    // Extrair dados
+    const { name, email, message } = req.body;
+
+    // Validar dados
+    console.log('🔵 [api/email/contact] Validando dados...');
+    const validation = emailValidator.validateContactForm({
+      name,
+      email,
+      message,
+    });
+
+    if (!validation.isValid) {
+      console.warn('🟡 [api/email/contact] Validação falhou:', validation.errors);
+      return res.status(400).json({
         success: false,
-        message: 'Erro interno do servidor',
-        error: process.env.NODE_ENV === 'development' ? error.message : 'Internal Server Error'
+        errors: validation.errors,
       });
     }
+
+    // Enviar email via serviço
+    console.log('🔵 [api/email/contact] Enviando email...');
+    const result = await emailService.sendContactEmail({
+      name: name.trim(),
+      email: email.trim().toLowerCase(),
+      message: message.trim(),
+    });
+
+    console.log('✅ [api/email/contact] Email enviado com sucesso');
+    return res.status(200).json({
+      success: true,
+      message: 'Email enviado com sucesso!',
+      data: result,
+    });
+
+  } catch (error) {
+    console.error('🔴 [api/email/contact] ERRO:', error.message);
+    console.error('🔴 [api/email/contact] Stack:', error.stack);
+
+    // Resposta de erro sempre em JSON
+    return res.status(500).json({
+      success: false,
+      message: 'Erro ao enviar email. Tente novamente mais tarde.',
+      error: process.env.NODE_ENV === 'development' ? error.message : undefined,
+    });
   }
 };
