@@ -62,7 +62,6 @@
     
     &:hover {
         background-color: darken($secondary-color, 10%);
-        transform: translateY(-3px);
         box-shadow: $shadow-lg;
     }
 }
