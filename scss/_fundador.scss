@@ -100,6 +100,7 @@
         margin-bottom: $spacing-md;
         text-align: justify;
         font-size: $font-size-base;
+        max-width: 700px;
         
         strong {
             color: $secondary-color;
@@ -118,6 +119,7 @@
     border-radius: 8px;
     border-left: 4px solid $secondary-color;
     box-shadow: 0 4px 15px rgba(26, 58, 82, 0.08);
+    max-width: 700px;
     
     h4 {
         margin-top: 0;
@@ -127,6 +129,7 @@
         color: #1a1a1a;
         line-height: 1.7;
         text-align: justify;
+        max-width: 100%;
         
         strong {
             color: $primary-color;
