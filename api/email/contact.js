@@ -1,6 +1,6 @@
 const emailController = require('../../controllers/emailController');
 
-module.exports = async function handler(req, res) {
+module.exports = (req, res) => {
   // Habilitar CORS
   res.setHeader('Access-Control-Allow-Credentials', 'true');
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -12,15 +12,7 @@ module.exports = async function handler(req, res) {
   }
 
   if (req.method === 'POST') {
-    try {
-      await emailController.sendContact(req, res);
-    } catch (error) {
-      console.error('Erro ao enviar email:', error);
-      return res.status(500).json({ 
-        success: false,
-        error: 'Erro ao enviar email' 
-      });
-    }
+    emailController.sendContact(req, res);
   } else {
     return res.status(405).json({ 
       success: false,
